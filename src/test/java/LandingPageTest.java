@@ -1,28 +1,14 @@
-import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageobject.BasePage;
 import pageobject.LandingPage;
 
-import static driver.driver.*;
-
-public class LandingPageTest { //убрала наследование - нам же нужны нормальные названия тестов, а не бесконечное переопределение одного и того же
-    public BasePage basePage;
+public class LandingPageTest extends BasePageTest {
     public LandingPage landingPage;
 
     @BeforeTest
-    public void openLandingPage() {
-        createDriver();
-        basePage = new BasePage();
-        basePage.open();
+    public void createLanding() {
         landingPage = new LandingPage();
-    }
-
-    @AfterTest
-    public void quitPage() {
-        quite();
     }
 
     @Test
