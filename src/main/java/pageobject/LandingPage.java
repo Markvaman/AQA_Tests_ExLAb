@@ -10,13 +10,53 @@ public class LandingPage extends BasePage {
     @FindBy(xpath = "//div[@id='header']//img")
     private WebElement bigLogo;
 
-    @FindBy(xpath = "//div[@class='sc-ksZaOG bxLYUZ']")
+    @FindBy(xpath = "//div[1]/div[2]/div[2]/div[1]/div")
     private WebElement sunIcon;
 
-    @FindBy(xpath = "//a[@class='sc-evZas hJsxZw'][1]")
+    @FindBy(xpath = "//li[1]//a")
     private WebElement aboutUs;
 
+    @FindBy(xpath = "//div[@id='logo_mobile']")
+    private WebElement miniLogo;
+
+    @FindBy(xpath = "//*[@id='header']/div[1]/div[2]")
+    private WebElement menu;
+
+    @FindBy(xpath = "//*[@id='root']/div/div[1]")
+    private WebElement rightLongImage;
+
+    @FindBy(xpath = "//li[2]//a")
+    private WebElement projects;
+
+    @FindBy(xpath = "//li[3]//a")
+    private WebElement mentors;
+
+    @FindBy(xpath = "//li[4]//a")
+    private WebElement startUp;
+
     // Методы страницы
+
+    public WebElement getStartUp() {
+        return startUp;
+    }
+
+    public WebElement getMentors() {
+        return mentors;
+    }
+    public WebElement getProjects() {
+        return projects;
+    }
+    public WebElement getRightLongImage() {
+        return rightLongImage;
+    }
+
+    public WebElement getMenu() {
+        return menu;
+    }
+
+    public WebElement getMiniLogo() {
+        return miniLogo;
+    }
 
     public WebElement getBigLogo() {
         return bigLogo;
@@ -26,8 +66,16 @@ public class LandingPage extends BasePage {
         return sunIcon;
     }
 
+    public void clickOnSunIcon(){
+        sunIcon.click();
+    }
+
     public WebElement getAboutUs() {
         return aboutUs;
+    }
+
+    public void quit(){
+        quit();
     }
 
 

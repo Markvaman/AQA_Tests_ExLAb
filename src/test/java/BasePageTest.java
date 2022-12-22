@@ -34,10 +34,6 @@ public class BasePageTest {
 
         Assert.assertTrue(basePage.logo.isDisplayed());
 
-
-
-
-
         System.out.println("________________________\n" +
                 "TEST PASSED: website is opened:\n" +
                 "- URL is the same\n" +
