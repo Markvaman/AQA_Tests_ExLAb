@@ -91,7 +91,7 @@ public class LandingPageTest extends BasePageTest {
     }
 
     @Test
-    public void clickOnSunIconChangesBackgroundColour(){
+    public void clickOnSunIconChangesTheme(){
         landingPage.clickOnSunIcon();
         Assert.assertTrue(landingPage.getMiniLogo().getAttribute("class").contains("FjAfx"));
         Assert.assertTrue(landingPage.getRightLongImage().getAttribute("class").contains("khsHPC"));
