@@ -34,8 +34,14 @@ public class LandingPage extends BasePage {
     @FindBy(xpath = "//li[4]//a")
     private WebElement startUp;
 
+    @FindBy(xpath = "//div[@id='root']/div")
+    private WebElement background;
+
     // Методы страницы
 
+    public WebElement getBackground() {
+        return background;
+    }
     public WebElement getStartUp() {
         return startUp;
     }

@@ -1,4 +1,3 @@
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -101,6 +100,17 @@ public class LandingPageTest extends BasePageTest {
         System.out.println("________________________\n" +
                 "TEST PASSED: Sun Icon changes landing theme");
 
+    }
+
+    @Test
+    public void clickOnSunIconChangeBackgroundColour(){
+        String blackBackground = landingPage.getBackground().getCssValue("background-color");
+        landingPage.clickOnSunIcon();
+        String whiteBackground = landingPage.getBackground().getCssValue("background-color");
+        Assert.assertNotEquals(whiteBackground, blackBackground, "Colour is not changed");
+        landingPage.clickOnSunIcon();
+        System.out.println("________________________\n" +
+                "TEST PASSED: Sun Icon changes background colour");
     }
 
 }
