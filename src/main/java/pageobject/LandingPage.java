@@ -3,9 +3,12 @@ package pageobject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LandingPage extends BasePage {
+public class LandingPage extends BaseData {
 
     // Локаторы страницы, кроме тех, которые отнесены в BasePage
+
+    @FindBy(id = "logo_mobile")
+    private WebElement logo;
 
     @FindBy(xpath = "//div[@id='header']//img")
     private WebElement bigLogo;
@@ -39,6 +42,9 @@ public class LandingPage extends BasePage {
 
     // Методы страницы
 
+    public WebElement getLogo() {
+        return logo;
+    }
     public WebElement getBackground() {
         return background;
     }

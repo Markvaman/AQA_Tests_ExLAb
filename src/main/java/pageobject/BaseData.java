@@ -7,27 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 import static driver.driver.getDriver;
 
-public class BasePage {
+public class BaseData {
 
     protected WebDriver driver;
 
     protected String baseUrl = "http://test.exlab.team/";
 
-    public BasePage() {
+    public BaseData() {
         driver = getDriver();
         PageFactory.initElements(driver, this);
     }
 
-    //Локаторы, относящиеся ко всем страницам сайта. В случае лендинга - к хедеру и футеру
-
-    @FindBy(id = "logo_mobile")
-    public WebElement logo;
-
-    //Методы для данной страницы, которые используются тестами в классе BasePageTest
-
-    public BasePage open() {
+    public BaseData open() {
         driver.get(baseUrl);
         return this;
     }
+
 }
 

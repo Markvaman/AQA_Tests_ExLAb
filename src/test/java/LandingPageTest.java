@@ -3,7 +3,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageobject.LandingPage;
 
-public class LandingPageTest extends BasePageTest {
+import static driver.driver.getDriver;
+
+public class LandingPageTest extends BaseTest {
     public LandingPage landingPage;
 
     @BeforeTest
@@ -12,7 +14,26 @@ public class LandingPageTest extends BasePageTest {
     }
 
     @Test
+    public void pageOpened() {
+
+        String expectedUrl = "http://test.exlab.team/";
+        String actualUrl = getDriver().getCurrentUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        Assert.assertEquals(getDriver().getTitle(), "ExLab Landing");
+
+        Assert.assertTrue(landingPage.getLogo().isDisplayed());
+
+        System.out.println("________________________\n" +
+                "TEST PASSED: website is opened:\n" +
+                "- URL is the same\n" +
+                "- Title is the same" + "\n" +
+                "- Logo is visible\n________________________");
+    }
+
+    @Test
     public void landingPageOpensWithDarkTheme() {
+
         Assert.assertTrue(landingPage.getMiniLogo().getAttribute("class").contains("EnPDN"));
         Assert.assertTrue(landingPage.getMenu().getAttribute("class").contains("iVTdFt"));
         Assert.assertTrue(landingPage.getRightLongImage().getAttribute("class").contains("kjBOCW"));
