@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pageobject.BaseData;
 
 import static driver.driver.*;
+import static driver.driver.getDriver;
 
 public class BaseTest {
 

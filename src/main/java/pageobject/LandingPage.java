@@ -86,9 +86,5 @@ public class LandingPage extends BaseData {
         return aboutUs;
     }
 
-    public void quit(){
-        quit();
-    }
-
 
 }

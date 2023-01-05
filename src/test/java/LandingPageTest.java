@@ -15,7 +15,6 @@ public class LandingPageTest extends BaseTest {
 
     @Test
     public void pageOpened() {
-
         String expectedUrl = "http://test.exlab.team/";
         String actualUrl = getDriver().getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
@@ -30,10 +29,9 @@ public class LandingPageTest extends BaseTest {
                 "- Title is the same" + "\n" +
                 "- Logo is visible\n________________________");
     }
-
     @Test
     public void landingPageOpensWithDarkTheme() {
-
+        landingPage = new LandingPage();
         Assert.assertTrue(landingPage.getMiniLogo().getAttribute("class").contains("EnPDN"));
         Assert.assertTrue(landingPage.getMenu().getAttribute("class").contains("iVTdFt"));
         Assert.assertTrue(landingPage.getRightLongImage().getAttribute("class").contains("kjBOCW"));
