@@ -1,7 +1,5 @@
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageobject.BaseData;
 
 import static driver.driver.*;
@@ -11,7 +9,7 @@ public class BaseTest {
 
     public BaseData basePage;
 
-    @BeforeTest
+    @BeforeMethod
     public void start () {
         createDriver();
         basePage = new BaseData();
@@ -19,7 +17,7 @@ public class BaseTest {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void finish() {
         quite();
     }

@@ -1,4 +1,7 @@
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageobject.LandingPage;
@@ -8,11 +11,16 @@ import static driver.driver.getDriver;
 public class LandingPageTest extends BaseTest {
     public LandingPage landingPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void createLanding() {
         landingPage = new LandingPage();
     }
 
+    public void isElementDisplayed(WebElement element){
+        ((JavascriptExecutor)getDriver()).executeScript("arguments[0].scrollIntoView();", element);
+        Assert.assertTrue(element.isDisplayed());
+        System.out.println("Element is visible");
+    }
     @Test
     public void pageOpened() {
         String expectedUrl = "http://test.exlab.team/";
@@ -38,77 +46,54 @@ public class LandingPageTest extends BaseTest {
         System.out.println("________________________\n" +
                 "TEST PASSED: Landing page has a default dark theme");
     }
-
     @Test
     public void exlabBigLogoIsVisible() {
-        Assert.assertTrue(landingPage.getBigLogo().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: ExLab big logo is visible");
+        isElementDisplayed(landingPage.getBigLogo());
     }
-
     @Test
     public void menuItemAboutUsIsVisible() {
-        Assert.assertTrue(landingPage.getAboutUs().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'О нас' is visible");
+        isElementDisplayed(landingPage.getAboutUs());
     }
-
     @Test
     public void menuItemAboutUsHasValidLink() {
         Assert.assertTrue(landingPage.getAboutUs().getAttribute("href").contains("#about"));
         System.out.println("________________________\n" +
                 "TEST PASSED: Menu item 'О нас' has valid link");
     }
-
     @Test
     public void menuItemProjectsIsVisible(){
-        Assert.assertTrue(landingPage.getProjects().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Проекты' is visible");
+        isElementDisplayed(landingPage.getProjects());
     }
-
     @Test
     public void menuItemProjectsHasValidLink(){
         Assert.assertTrue(landingPage.getProjects().getAttribute("href").contains("#projects"));
         System.out.println("________________________\n" +
                 "TEST PASSED: Menu item 'Проекты' has valid link");
     }
-
     @Test
     public void menuItemMentorsIsVisible(){
-        Assert.assertTrue(landingPage.getMentors().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Менторы' is visible");
+        isElementDisplayed(landingPage.getMentors());
     }
-
     @Test
     public void menuItemMentorsHasValidLink(){
         Assert.assertTrue(landingPage.getMentors().getAttribute("href").contains("#mentors"));
         System.out.println("________________________\n" +
                 "TEST PASSED: Menu item 'Менторы' has valid link");
     }
-
     @Test
     public void menuItemStartUpIsVisible(){
-        Assert.assertTrue(landingPage.getStartUp().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Start Up' is visible");
+        isElementDisplayed(landingPage.getStartUp());
     }
-
     @Test
     public void menuItemStartUpHasValidLink(){
         Assert.assertTrue(landingPage.getStartUp().getAttribute("href").contains("#startup"));
         System.out.println("________________________\n" +
                 "TEST PASSED: Menu item 'Start Up' has valid link");
     }
-
     @Test
     public void buttonSunIconIsVisible(){
-        Assert.assertTrue(landingPage.getSunIcon().isDisplayed());
-        System.out.println("________________________\n" +
-                "TEST PASSED: Sun Icon is visible");
+        isElementDisplayed(landingPage.getSunIcon());
     }
-
     @Test
     public void clickOnSunIconChangesTheme(){
         landingPage.clickOnSunIcon();
@@ -118,9 +103,7 @@ public class LandingPageTest extends BaseTest {
         landingPage.clickOnSunIcon();
         System.out.println("________________________\n" +
                 "TEST PASSED: Sun Icon changes landing theme");
-
     }
-
     @Test
     public void clickOnSunIconChangeBackgroundColour(){
         String blackBackground = landingPage.getBackground().getCssValue("background-color");
@@ -131,5 +114,34 @@ public class LandingPageTest extends BaseTest {
         System.out.println("________________________\n" +
                 "TEST PASSED: Sun Icon changes background colour");
     }
+    @Test
+    public void joinButtonIsVisible(){
+        isElementDisplayed(landingPage.getJoinButton());
+    }
+    @Test
+    public void clickOnJoinButtonInvitesToTelegramBot(){
+        landingPage.clickOnJoinButton();
+        landingPage.switchToBotTab();
+        Assert.assertEquals(getDriver().getCurrentUrl(), "https://t.me/ExLab_registration_bot");
+        System.out.println("________________________\n" +
+                "TEST PASSED: Click on join button invites to tg bot");
+    }
+    @Test
+    public void aboutUsTitleIsVisible(){
+        isElementDisplayed(landingPage.getAboutUsTitle());
+    }
+    @Test
+    public void aboutUsTextIsVisible(){
+        isElementDisplayed(landingPage.getAboutUsText());
+    }
+    @Test
+    public void whyExlabTitleIsVisible(){
+        isElementDisplayed(landingPage.getWhyExlabTitle());
+    }
+    @Test
+    public void whyExlabTextIsVisible(){
+        isElementDisplayed(landingPage.getWhyExlabText());
+    }
+
 
 }
