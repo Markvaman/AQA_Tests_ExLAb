@@ -26,11 +26,8 @@ public class LandingPageTest extends BaseTest {
         String expectedUrl = "http://test.exlab.team/";
         String actualUrl = getDriver().getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
-
         Assert.assertEquals(getDriver().getTitle(), "ExLab Landing");
-
         Assert.assertTrue(landingPage.getLogo().isDisplayed());
-
         System.out.println("________________________\n" +
                 "TEST PASSED: website is opened:\n" +
                 "- URL is the same\n" +
@@ -142,6 +139,40 @@ public class LandingPageTest extends BaseTest {
     public void whyExlabTextIsVisible(){
         isElementDisplayed(landingPage.getWhyExlabText());
     }
+    @Test
+    public void secondJoinButtonIsVisible(){
+        isElementDisplayed(landingPage.getSecondJoinButton());
+    }
+    @Test
+    public void clickOnSecondJoinButtonInvitesToTelegramBot(){
+        landingPage.clickOnSecondJoinButton();
+        landingPage.switchToBotTab();
+        Assert.assertEquals(getDriver().getCurrentUrl(), "https://t.me/ExLab_registration_bot");
+        System.out.println("________________________\n" +
+                "TEST PASSED: Click on second join button invites to tg bot");
+    }
+    @Test
+    public void projectsTitleIsVisible(){
+        isElementDisplayed(landingPage.getProjectsTitle());
+    }
+    @Test
+    public void projectsLogosAreVisible(){
+        isElementDisplayed(landingPage.getProjectsExlabLogo());
+        isElementDisplayed(landingPage.getProjectsHealthLogo());
+        isElementDisplayed(landingPage.getProjectsEasyHelpLogo());
+    }
+    @Test
+    public void projectsTextsAreVisible(){
+        isElementDisplayed(landingPage.getProjectsExlabText());
+        isElementDisplayed(landingPage.getProjectsEasyHelpText());
+        isElementDisplayed(landingPage.getProjectsHealthText());
+    }
+    @Test
+    public void mentorsTitleIsVisible() {
+        isElementDisplayed(landingPage.getMentorsTitle());
+    }
+
+
 
 
 }
