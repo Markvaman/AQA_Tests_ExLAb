@@ -1,20 +1,14 @@
-import org.testng.Assert;
-import org.testng.annotations.*;
-import pageobject.BaseData;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
-import static driver.driver.*;
-import static driver.driver.getDriver;
+import static driver.driver.createDriver;
+import static driver.driver.quite;
 
-public class BaseTest {
-
-    public BaseData basePage;
+public abstract class BaseTest {
 
     @BeforeMethod
     public void start () {
         createDriver();
-        basePage = new BaseData();
-        basePage.open();
-
     }
 
     @AfterMethod

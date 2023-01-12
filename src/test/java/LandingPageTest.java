@@ -14,12 +14,7 @@ public class LandingPageTest extends BaseTest {
     @BeforeMethod
     public void createLanding() {
         landingPage = new LandingPage();
-    }
-
-    public void isElementDisplayed(WebElement element){
-        ((JavascriptExecutor)getDriver()).executeScript("arguments[0].scrollIntoView();", element);
-        Assert.assertTrue(element.isDisplayed());
-        System.out.println("Element is visible");
+        landingPage.openPage();
     }
     @Test
     public void pageOpened() {
@@ -27,7 +22,7 @@ public class LandingPageTest extends BaseTest {
         String actualUrl = getDriver().getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
         Assert.assertEquals(getDriver().getTitle(), "ExLab Landing");
-        Assert.assertTrue(landingPage.getLogo().isDisplayed());
+        landingPage.logoIsVisible();
         System.out.println("________________________\n" +
                 "TEST PASSED: website is opened:\n" +
                 "- URL is the same\n" +
@@ -36,141 +31,104 @@ public class LandingPageTest extends BaseTest {
     }
     @Test
     public void landingPageOpensWithDarkTheme() {
-        landingPage = new LandingPage();
-        Assert.assertTrue(landingPage.getMiniLogo().getAttribute("class").contains("EnPDN"));
-        Assert.assertTrue(landingPage.getMenu().getAttribute("class").contains("iVTdFt"));
-        Assert.assertTrue(landingPage.getRightLongImage().getAttribute("class").contains("kjBOCW"));
+        landingPage.checkMiniLogoClass();
+        landingPage.checkMenuClass();
+        landingPage.checkRightLongImageClass();
         System.out.println("________________________\n" +
                 "TEST PASSED: Landing page has a default dark theme");
     }
     @Test
-    public void exlabBigLogoIsVisible() {
-        isElementDisplayed(landingPage.getBigLogo());
-    }
+    public void exlabBigLogoIsVisible() { landingPage.bigLogoIsDisplayed(); }
     @Test
     public void menuItemAboutUsIsVisible() {
-        isElementDisplayed(landingPage.getAboutUs());
+        landingPage.menuItemAboutUsIsDisplayed();
     }
     @Test
-    public void menuItemAboutUsHasValidLink() {
-        Assert.assertTrue(landingPage.getAboutUs().getAttribute("href").contains("#about"));
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'О нас' has valid link");
+    public void aboutUsMenuLinkOpensCorrectModule() {
+        landingPage.clickOnAboutUsMenuItem();
+        landingPage.checkAboutUSMenuItemIsClickable();
     }
     @Test
     public void menuItemProjectsIsVisible(){
-        isElementDisplayed(landingPage.getProjects());
+        landingPage.menuItemProjectsIsDisplayed();
     }
     @Test
-    public void menuItemProjectsHasValidLink(){
-        Assert.assertTrue(landingPage.getProjects().getAttribute("href").contains("#projects"));
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Проекты' has valid link");
+    public void projectsMenuLinkOpensCorrectModule() {
+        landingPage.clickOnProjectsMenuItem();
+        landingPage.checkProjectsMenuItemIsClickable();
     }
     @Test
-    public void menuItemMentorsIsVisible(){
-        isElementDisplayed(landingPage.getMentors());
+    public void menuItemMentorsIsVisible(){ landingPage.menuItemMentorsIsDisplayed(); }
+    @Test
+    public void menuItemMentorsOpensCorrectModule(){
+        landingPage.clickOnMentorsMenuItem();
+        landingPage.checkMentorsMenuItemIsClickable();
     }
     @Test
-    public void menuItemMentorsHasValidLink(){
-        Assert.assertTrue(landingPage.getMentors().getAttribute("href").contains("#mentors"));
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Менторы' has valid link");
+    public void menuItemStartUpIsVisible(){ landingPage.startUpMenuItemIsDisplayed(); }
+    @Test
+    public void menuItemStartUpOpensCorrectModule(){
+        landingPage.clickOnStartUpMenuItem();
+        landingPage.checkStarUpMenuItemIsClickable();
     }
     @Test
-    public void menuItemStartUpIsVisible(){
-        isElementDisplayed(landingPage.getStartUp());
-    }
-    @Test
-    public void menuItemStartUpHasValidLink(){
-        Assert.assertTrue(landingPage.getStartUp().getAttribute("href").contains("#startup"));
-        System.out.println("________________________\n" +
-                "TEST PASSED: Menu item 'Start Up' has valid link");
-    }
-    @Test
-    public void buttonSunIconIsVisible(){
-        isElementDisplayed(landingPage.getSunIcon());
-    }
-    @Test
-    public void clickOnSunIconChangesTheme(){
-        landingPage.clickOnSunIcon();
-        Assert.assertTrue(landingPage.getMiniLogo().getAttribute("class").contains("FjAfx"));
-        Assert.assertTrue(landingPage.getRightLongImage().getAttribute("class").contains("khsHPC"));
-        Assert.assertTrue(landingPage.getMenu().getAttribute("class").contains("eLZoiV"));
-        landingPage.clickOnSunIcon();
-        System.out.println("________________________\n" +
-                "TEST PASSED: Sun Icon changes landing theme");
-    }
+    public void buttonSunIconIsVisible(){ landingPage.sunIconIsDisplayed(); }
     @Test
     public void clickOnSunIconChangeBackgroundColour(){
-        String blackBackground = landingPage.getBackground().getCssValue("background-color");
+        String backgroundColorOne = landingPage.getBackgroundColor();
         landingPage.clickOnSunIcon();
-        String whiteBackground = landingPage.getBackground().getCssValue("background-color");
-        Assert.assertNotEquals(whiteBackground, blackBackground, "Colour is not changed");
+        String backgroundColorTwo = landingPage.getBackgroundColor();
+        Assert.assertNotEquals(backgroundColorTwo, backgroundColorOne, "Colour is not changed");
         landingPage.clickOnSunIcon();
-        System.out.println("________________________\n" +
-                "TEST PASSED: Sun Icon changes background colour");
+        String backgroundColorThree = landingPage.getBackgroundColor();
+        Assert.assertNotEquals(backgroundColorThree, backgroundColorTwo, "Colour is not changed");
     }
     @Test
-    public void joinButtonIsVisible(){
-        isElementDisplayed(landingPage.getJoinButton());
-    }
+    public void joinButtonIsVisible(){ landingPage.joinButtonIsDisplayed(); }
     @Test
     public void clickOnJoinButtonInvitesToTelegramBot(){
         landingPage.clickOnJoinButton();
         landingPage.switchToBotTab();
+        landingPage.botNameIsDisplayed();
         Assert.assertEquals(getDriver().getCurrentUrl(), "https://t.me/ExLab_registration_bot");
         System.out.println("________________________\n" +
                 "TEST PASSED: Click on join button invites to tg bot");
     }
     @Test
-    public void aboutUsTitleIsVisible(){
-        isElementDisplayed(landingPage.getAboutUsTitle());
-    }
+    public void aboutUsTitleIsVisible(){ landingPage.aboutUsTitleIsDisplayed(); }
     @Test
-    public void aboutUsTextIsVisible(){
-        isElementDisplayed(landingPage.getAboutUsText());
-    }
+    public void aboutUsTextIsVisible(){ landingPage.aboutUsTextIsDisplayed(); }
     @Test
-    public void whyExlabTitleIsVisible(){
-        isElementDisplayed(landingPage.getWhyExlabTitle());
-    }
+    public void whyExlabTitleIsVisible(){ landingPage.whyExlabTitleIsDisplayed(); }
     @Test
-    public void whyExlabTextIsVisible(){
-        isElementDisplayed(landingPage.getWhyExlabText());
-    }
+    public void whyExlabTextIsVisible(){ landingPage.whyExlabTextIsDisplayed(); }
     @Test
-    public void secondJoinButtonIsVisible(){
-        isElementDisplayed(landingPage.getSecondJoinButton());
-    }
+    public void secondJoinButtonIsVisible(){ landingPage.secondJoinButtonIsDisplayed(); }
     @Test
     public void clickOnSecondJoinButtonInvitesToTelegramBot(){
         landingPage.clickOnSecondJoinButton();
         landingPage.switchToBotTab();
+        landingPage.botNameIsDisplayed();
         Assert.assertEquals(getDriver().getCurrentUrl(), "https://t.me/ExLab_registration_bot");
         System.out.println("________________________\n" +
                 "TEST PASSED: Click on second join button invites to tg bot");
     }
     @Test
-    public void projectsTitleIsVisible(){
-        isElementDisplayed(landingPage.getProjectsTitle());
-    }
+    public void projectsTitleIsVisible(){ landingPage.projectTitleIsDisplayed(); }
     @Test
-    public void projectsLogosAreVisible(){
-        isElementDisplayed(landingPage.getProjectsExlabLogo());
-        isElementDisplayed(landingPage.getProjectsHealthLogo());
-        isElementDisplayed(landingPage.getProjectsEasyHelpLogo());
-    }
+    public void projectExlabLogoIsVisible() { landingPage.exlabProjectLogoIsDisplayed(); }
     @Test
-    public void projectsTextsAreVisible(){
-        isElementDisplayed(landingPage.getProjectsExlabText());
-        isElementDisplayed(landingPage.getProjectsEasyHelpText());
-        isElementDisplayed(landingPage.getProjectsHealthText());
-    }
+    public void projectHealthLogoIsVisible() { landingPage.healthProjectLogoIsDisplayed();}
     @Test
-    public void mentorsTitleIsVisible() {
-        isElementDisplayed(landingPage.getMentorsTitle());
-    }
+    public void projectEasyHelpLogoIsVisible() { landingPage.easyHelpLogoIsDisplayed(); }
+    @Test
+    public void projectExlabTextIsVisible() { landingPage.exlabProjectTextIsDisplayed(); }
+    @Test
+    public void projectHealthTextIsVisible() { landingPage.healthProjectTextIsDisplayed(); }
+    @Test
+    public void projectEasyHelpTextIsVisible() { landingPage.easyHelpTextIsDisplayed(); }
+    @Test
+    public void mentorsTitleIsVisible() { landingPage.mentorsTitleIsDisplayed(); }
 
 
 
