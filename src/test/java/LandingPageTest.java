@@ -1,8 +1,5 @@
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageobject.LandingPage;
 
@@ -129,6 +126,22 @@ public class LandingPageTest extends BaseTest {
     public void projectEasyHelpTextIsVisible() { landingPage.easyHelpTextIsDisplayed(); }
     @Test
     public void mentorsTitleIsVisible() { landingPage.mentorsTitleIsDisplayed(); }
+    @Test
+    public void mentorsInfoOpensByClickToPlus(){
+        landingPage.scrollToMentorsModule();
+        landingPage.clickOnPlus();
+        landingPage.checkPlusIconClass();
+        landingPage.stanislavHeaderIsDisplayed();
+        landingPage.stanislavInfoIsDisplayed();
+    }
+    @Test
+    public void mentorsFotoIsVisible(){
+        landingPage.scrollToMentorsModule();
+        landingPage.clickOnPlusTwo();
+        landingPage.alexandrHeaderIsDisplayed();
+        landingPage.alexandrFotoIsDisplayed();
+    }
+
 
 
 

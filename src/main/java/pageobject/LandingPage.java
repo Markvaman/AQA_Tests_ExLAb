@@ -2,7 +2,9 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 
 import static driver.driver.getDriver;
@@ -18,8 +20,8 @@ public class LandingPage extends BaseData {
     private By menu = By.xpath("//*[@id='header']/div[1]/div[2]");
     private By rightLongImage = By.xpath("//*[@id='root']/div/div[1]");
     private By projects = By.xpath("//li[2]//a");
-    private By mentors = By.xpath("//*[@id='header']/div[1]/div[2]/nav/ul/li[3]");
-    private By startUp = By.xpath("//a[text()='StartUp для']");
+    private By mentors = By.xpath("//*[@id='header']/div[1]/div[2]/nav/ul/li[3]/a");
+    private By startUp = By.xpath("//*[@id='header']/div[1]/div[2]/nav/ul/li[4]/a");
     private By background = By.xpath("//div[@id='root']/div");
     private By joinButton = By.xpath("//*[@id='header']/div[1]/div[2]/div[2]/div[2]");
     private By aboutUsTitle = By.xpath("//*[@id='about']/div[1]");
@@ -34,9 +36,20 @@ public class LandingPage extends BaseData {
     private By projectsExlabText = By.xpath("//*[@id='projects']/div[2]/div[1]/p");
     private By projectsHealthText = By.xpath("//*[@id='projects']/div[2]/div[2]/p");
     private By projectsEasyHelpText = By.xpath("//*[@id='projects']/div[2]/div[3]/p");
-    private By mentorsTitle = By.xpath("//*[@id='mentors']/div[1]");
+    private By mentorsTitle = By.xpath("//div[text()='Менторы']");
+    private By mentorsText = By.xpath("//*[@id='mentors']/div[2]");
     private By startUpTitle = By.xpath("//*[@id='startup-title-wrapper']/div");
     private By botName = By.xpath("//div[2]/div[2]/div/div[2]/span");
+    private By stanislavHeader = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[1]/div[1]/p[1]");
+    private By stanislavInfo = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[1]/div[2]");
+    private By stanislavFoto = By.xpath("//img[@alt='Станислав Харлап']");
+    private By plusIcon = By.xpath("//div[@class='sc-TRNrF fYlkKP']//span[1]");
+    private By becomeMentorButton = By.xpath(".//a[text()='Стать ментором']");
+    private By alexandrHeader = By.xpath("//p[text()='Александр Юдаев']");
+    private By plusIconTwo = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[2]/div[1]/span");
+    private By alexandrFoto = By.xpath("//img[@alt='Александр Юдаев']");
+    private By alexandraHeader = By.xpath("//p[text()='Александра Мурашко']");
+
 
 
     // Методы страницы
@@ -83,8 +96,8 @@ public class LandingPage extends BaseData {
         isElementDisplayed(mentors);
     }
     public void checkMentorsMenuItemIsClickable(){
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsTitle)));
-        isElementDisplayed(mentorsTitle);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsText)));
+        isElementDisplayed(mentorsText);
     }
     public void clickOnMentorsMenuItem(){
         driver.findElement(mentors).click();
@@ -162,8 +175,34 @@ public class LandingPage extends BaseData {
         isElementDisplayed(projectsEasyHelpText);
     }
     public void mentorsTitleIsDisplayed() {
-        scrollToElement(mentorsTitle);
+        scrollToElement(stanislavHeader);
         isElementDisplayed(mentorsTitle);
     }
+    public void scrollToMentorsModule(){
+        scrollToElement(alexandrHeader);
+        isElementDisplayed(mentorsTitle);
+    }
+    public void clickOnPlus(){
+        driver.findElement(plusIcon).click();
+    }
+    public void checkPlusIconClass(){
+        Assert.assertTrue(driver.findElement(plusIcon).getAttribute("class").contains("gGHWQo"));
+    }
+    public void stanislavHeaderIsDisplayed(){
+        isElementDisplayed(stanislavHeader);
+    }
+    public void stanislavInfoIsDisplayed(){
+        isElementDisplayed(stanislavInfo);
+    }
+    public void clickOnPlusTwo() {
+        driver.findElement(plusIconTwo).click();
+    }
+    public void alexandrHeaderIsDisplayed(){
+        isElementDisplayed(alexandrHeader);
+    }
+    public void alexandrFotoIsDisplayed(){
+        isElementDisplayed(alexandrFoto);
+    }
+
 
 }
