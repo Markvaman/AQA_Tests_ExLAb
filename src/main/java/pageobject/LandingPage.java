@@ -52,6 +52,8 @@ public class LandingPage extends BaseData {
 
 
 
+
+
     // Методы страницы
     public void openPage(){
         open("http://test.exlab.team/");
@@ -202,6 +204,23 @@ public class LandingPage extends BaseData {
     }
     public void alexandrFotoIsDisplayed(){
         isElementDisplayed(alexandrFoto);
+    }
+    public void alexandrFotoIsNotDisplayed(){
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@alt='Александр Юдаев']")).isEnabled());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Foto is not visible after click on minus");
+    }
+    public void checkMentorsCount(){
+        int count = driver.findElements(By.className("sc-jIAOiI")).size();
+        Assert.assertEquals(count, 4);
+        System.out.println("________________________\n" +
+                "TEST PASSED: Mentors count equals 4");
+    }
+    public void scrollToAlexandraHeader(){
+        scrollToElement(alexandraHeader);
+    }
+    public void becomeMentorButtonIsDisplayed(){
+        isElementDisplayed(becomeMentorButton);
     }
 
 

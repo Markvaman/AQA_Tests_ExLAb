@@ -141,6 +141,25 @@ public class LandingPageTest extends BaseTest {
         landingPage.alexandrHeaderIsDisplayed();
         landingPage.alexandrFotoIsDisplayed();
     }
+    @Test
+    public void mentorsCountIsFour(){
+        landingPage.scrollToMentorsModule();
+        landingPage.checkMentorsCount();
+    }
+    @Test
+    public void mentorsInfoIsClosedByMinus(){
+        landingPage.scrollToMentorsModule();
+        landingPage.alexandrHeaderIsDisplayed();
+        landingPage.clickOnPlusTwo();
+        landingPage.alexandrFotoIsDisplayed();
+        landingPage.clickOnPlusTwo();
+        landingPage.alexandrFotoIsNotDisplayed();
+    }
+    @Test
+    public void becomeMentorButtonIsVisible(){
+        landingPage.scrollToAlexandraHeader();
+        landingPage.becomeMentorButtonIsDisplayed();
+    }
 
 
 
