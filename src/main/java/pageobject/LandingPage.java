@@ -97,22 +97,20 @@ public class LandingPage extends BaseData {
         return driver.findElement(mentors).isDisplayed();
     }
     public Boolean checkMentorsMenuItemIsClickable(){
-       return driver.findElement(mentorsTitle).isDisplayed();
+       return driver.findElement(mentors).isEnabled();
     }
     public LandingPage clickOnMentorsMenuItem(){
         driver.findElement(mentors).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(stanislavHeader)));
         return this;
     }
     public Boolean startUpMenuItemIsDisplayed(){
         return driver.findElement(startUp).isDisplayed();
     }
     public Boolean checkStarUpMenuItemIsClickable(){
-        return driver.findElement(startUpTitle).isDisplayed();
+        return driver.findElement(startUp).isEnabled();
     }
     public LandingPage clickOnStartUpMenuItem () {
         driver.findElement(startUp).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpTitle)));
         return this;
     }
     public Boolean sunIconIsDisplayed(){

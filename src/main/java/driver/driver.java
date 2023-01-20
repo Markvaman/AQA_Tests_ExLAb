@@ -1,9 +1,7 @@
 package driver;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.*;
 
 import java.time.Duration;
 
@@ -19,7 +17,7 @@ public class driver {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITY_WAIT));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(SCRIPT_TIME_OUT));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT));
-        driver.manage().window().maximize();
+        driver.manage().window().setSize(DIMENSION);
         driver.manage().deleteAllCookies();
     }
 
