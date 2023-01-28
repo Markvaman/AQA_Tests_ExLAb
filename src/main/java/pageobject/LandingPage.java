@@ -1,14 +1,18 @@
 package pageobject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static driver.driver.getDriver;
 
 public class LandingPage extends BaseData {
 
+    //HEADER
     private final By logo = By.id("logo_mobile");
     private final By bigLogo = By.xpath("//div[@id='header']//img");
     private final By sunIcon = By.xpath("//div[1]/div[2]/div[2]/div[1]/div");
@@ -21,11 +25,16 @@ public class LandingPage extends BaseData {
     private final By startUp = By.xpath("//ul/li[last()]");
     private final By background = By.xpath("//div[@id='root']/div");
     private final By joinButton = By.xpath("//*[@id='header']/div[1]/div[2]/div[2]/div[2]");
+
+    //ABOUT US AND WHY EXLAB MODULES
     private final By aboutUsTitle = By.xpath("//*[@id='about']/div[1]");
     private final By aboutUsText = By.xpath("//*[@id='about']/div[2]/p");
     private final By whyExlabTitle = By.xpath("//*[@id='about']/div[3]/div[1]");
     private final By whyExlabText = By.xpath("//*[@id='about']/div[3]/ol");
     private final By secondJoinButton = By.xpath("//*[@id='about']/div[3]/div[2]/a");
+    private final By botName = By.xpath("//div[2]/div[2]/div/div[2]/span");
+
+    //PROJECTS MODULE
     private final By projectsTitle = By.xpath("//*[@id='projects-title-wrapper']/div");
     private final By projectsExlabLogo = By.xpath("//*[@id='projects']/div[2]/div[1]/img");
     private final By projectsHealthLogo = By.xpath("//*[@id='projects']/div[2]/div[2]/img");
@@ -33,9 +42,12 @@ public class LandingPage extends BaseData {
     private final By projectsExlabText = By.xpath("//*[@id='projects']/div[2]/div[1]/p");
     private final By projectsHealthText = By.xpath("//*[@id='projects']/div[2]/div[2]/p");
     private final By projectsEasyHelpText = By.xpath("//*[@id='projects']/div[2]/div[3]/p");
+
+    //START UP AND MENTORS MODULES
     private final By mentorsTitle = By.xpath("//*[@id='mentors']/div[1]");
     private final By startUpTitle = By.xpath("//div[@data-scroll-target='#startup-title-wrapper']");
-    private final By botName = By.xpath("//div[2]/div[2]/div/div[2]/span");
+    private final By startUpText = By.xpath("//div[@class='sc-jfmDQi jtqNlU']");
+    private final By findSpecialistButton = By.xpath("//a[@class='sc-dkzDqf dEddqP']");
     private final By stanislavHeader = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[1]/div[1]/p[1]");
     private final By stanislavInfo = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[1]/div[2]");
     private final By plusIcon = By.xpath("//div[@class='sc-TRNrF fYlkKP']//span[1]");
@@ -44,9 +56,15 @@ public class LandingPage extends BaseData {
     private final By plusIconTwo = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[2]/div[1]/span");
     private final By minusIcon = By.xpath("//span[@class='sc-eKBdFk gGHWQo']");
     private final By alexandrFoto = By.xpath("//img[@alt='Александр Юдаев']");
-    private final By alexandraHeader = By.xpath("//p[text()='Александра Мурашко']");
 
-
+    //HELP PROJECT AND STAY CONNECTED MODULES
+    private final By helpProjectTitle = By.xpath("//div[@class='sc-jTYCaT coDMnK']");
+    private final By helpProjectText = By.xpath("//div[@class='sc-fctJkW gfwicC']");
+    private final By boostyButton = By.xpath("//a[@href='https://boosty.to/exlab_startup']");
+    private final By pantheonButton = By.xpath("//a[@class='sc-hKMtZM etdNbW']");
+    private final By boostyLogo = By.xpath("//*[@class='TopMenu_logo_UXt7J']");
+    private final By stayConnectedTitle = By.xpath("//div[@class='sc-bhVIhj uaVnA']");
+    private final By stayConnectedText = By.xpath("//div[@class='sc-eGAhfa cacMWv']");
 
 
 
@@ -77,8 +95,8 @@ public class LandingPage extends BaseData {
     public Boolean checkAboutUSMenuItemIsClickable(){
         return driver.findElement(aboutUsTitle).isDisplayed();
     }
-    public LandingPage clickOnAboutUsMenuItem(){
-        driver.findElement(aboutUs).click();
+    public LandingPage clickOnAboutUsMenuItem() throws InterruptedException {
+        clickWithDelay(aboutUs);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(aboutUsTitle)));
         return this;
     }
@@ -88,8 +106,8 @@ public class LandingPage extends BaseData {
     public Boolean checkProjectsMenuItemIsClickable(){
         return driver.findElement(projectsTitle).isDisplayed();
     }
-    public LandingPage clickOnProjectsMenuItem(){
-        driver.findElement(projects).click();
+    public LandingPage clickOnProjectsMenuItem() throws InterruptedException {
+        clickWithDelay(projects);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(projectsTitle)));
         return this;
     }
@@ -97,20 +115,20 @@ public class LandingPage extends BaseData {
         return driver.findElement(mentors).isDisplayed();
     }
     public Boolean checkMentorsMenuItemIsClickable(){
-       return driver.findElement(mentors).isEnabled();
+       return driver.findElement(mentorsTitle).isDisplayed();
     }
-    public LandingPage clickOnMentorsMenuItem(){
-        driver.findElement(mentors).click();
+    public LandingPage clickOnMentorsMenuItem() throws InterruptedException {
+        clickWithDelay(mentors);
         return this;
     }
     public Boolean startUpMenuItemIsDisplayed(){
         return driver.findElement(startUp).isDisplayed();
     }
     public Boolean checkStarUpMenuItemIsClickable(){
-        return driver.findElement(startUp).isEnabled();
+        return driver.findElement(startUpTitle).isDisplayed();
     }
-    public LandingPage clickOnStartUpMenuItem () {
-        driver.findElement(startUp).click();
+    public LandingPage clickOnStartUpMenuItem () throws InterruptedException {
+        clickWithDelay(startUp);
         return this;
     }
     public Boolean sunIconIsDisplayed(){
@@ -130,8 +148,7 @@ public class LandingPage extends BaseData {
     public Boolean botNameIsDisplayed(){
        return driver.findElement(botName).isDisplayed(); }
     public LandingPage switchToBotTab(){
-        ArrayList<String>tabs = new ArrayList<>(getDriver().getWindowHandles());
-        getDriver().switchTo().window(tabs.get(1));
+        switchToSecondTab();
         return this;
     }
     public Boolean aboutUsTitleIsDisplayed(){
@@ -230,13 +247,98 @@ public class LandingPage extends BaseData {
         return count;
     }
     public Boolean scrollToBecomeMentorButton(){
-        scrollToElement(mentorsTitle);
         scrollToElement(becomeMentorButton);
         return driver.findElement(becomeMentorButton).isDisplayed();
     }
     public Boolean becomeMentorButtonIsDisplayed(){
         return driver.findElement(becomeMentorButton).isDisplayed();
     }
+    public void scrollDown(){
+        // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(aboutUsTitle));
+        // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(projectsTitle));
+        // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(mentorsTitle));
+        // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(startUpTitle));
+        String xpath = "//*[@class='sc-fEOsli iema-Dv']";
+        List <WebElement> elements = driver.findElements(By.xpath(xpath));
+        int count = elements.size();
+        for (int i = 1; i <= count; i++) {
+            WebElement position = driver.findElement(By.xpath(String.format("(%s)[%d]", xpath, i)));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            js.executeScript("arguments[0].scrollIntoView(true);", position);
+        }
+        }
+    public void scrollUp(){
+        String xpath = "//*[@class='sc-fEOsli iema-Dv']";
+        List <WebElement> elements = driver.findElements(By.xpath(xpath));
+        int count = elements.size();
+        for (int i = 7; i > 0; i--) {
+            WebElement position = driver.findElement(By.xpath(String.format("(%s)[%d]", xpath, i)));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            js.executeScript("arguments[0].scrollIntoView(true);", position);
+        }
+        //js.executeScript("arguments[0].scrollIntoView()", menu);
+    }
+    public LandingPage scrollToStartUpModule() {
+        scrollToElement(startUpTitle);
+        return this;
+    }
+    public Boolean startUpTitleIsDisplayed(){
+        return driver.findElement(startUpTitle).isDisplayed();
+    }
+    public Boolean startUpTextIsDisplayed(){
+        return driver.findElement(startUpText).isDisplayed();
+    }
+    public LandingPage scrollToFindSpecialistButton(){
+        scrollToElement(findSpecialistButton);
+        return this;
+    }
+    public Boolean findSpecialistButtonIsDisplayed(){
+        return driver.findElement(findSpecialistButton).isDisplayed();
+    }
+    public LandingPage scrollToHelpProjectModule(){
+        scrollToElement(helpProjectText);
+        return this;
+    }
+    public LandingPage scrollToBoostyButton(){
+        scrollToElement(boostyButton);
+        return this;
+    }
 
+    public Boolean helpProjectTitleIsDisplayed(){
+        return driver.findElement(helpProjectTitle).isDisplayed();
+    }
+    public Boolean helpProjectTextIsDisplayed(){
+        return driver.findElement(helpProjectText).isDisplayed();
+    }
+    public Boolean boostyButtonIsDisplayed(){
+        return driver.findElement(boostyButton).isDisplayed();
+    }
+    public Boolean pantheonButtonIsDisplayed() {
+        return driver.findElement(pantheonButton).isDisplayed();
+    }
+    public void clickOnBoostyButton() throws InterruptedException {
+        clickWithDelay(boostyButton);
+    }
+    public Boolean boostyLogoIsDisplayed(){
+        return driver.findElement(boostyLogo).isDisplayed();
+    }
+    public LandingPage switchToBoostyTab(){
+        switchToSecondTab();
+        return this;
+    }
+    public Boolean stayConnectedTitleIsDisplayed(){
+        return driver.findElement(stayConnectedTitle).isDisplayed();
+    }
+    public Boolean stayConnectedTextIsDisplayed(){
+        return driver.findElement(stayConnectedText).isDisplayed();
+    }
+    }
 
-}

@@ -38,7 +38,7 @@ public class LandingPageTest extends BaseTest {
                 "TEST PASSED: Item About us is displayed");
     }
     @Test
-    public void aboutUsMenuLinkOpensCorrectModule() {
+    public void aboutUsMenuLinkOpensCorrectModule() throws InterruptedException {
         landingPage.clickOnAboutUsMenuItem();
         Assert.assertTrue(landingPage.checkAboutUSMenuItemIsClickable());
         System.out.println("________________________\n" +
@@ -51,7 +51,7 @@ public class LandingPageTest extends BaseTest {
                 "TEST PASSED: Item Projects is displayed");
     }
     @Test
-    public void projectsMenuLinkOpensCorrectModule() {
+    public void projectsMenuLinkOpensCorrectModule() throws InterruptedException {
         landingPage.clickOnProjectsMenuItem();
         Assert.assertTrue(landingPage.checkProjectsMenuItemIsClickable());
         System.out.println("________________________\n" +
@@ -64,7 +64,9 @@ public class LandingPageTest extends BaseTest {
                 "TEST PASSED: Item Mentors is displayed");
     }
     @Test
-    public void menuItemMentorsOpensCorrectModule() {
+    public void menuItemMentorsOpensCorrectModule() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.scrollUp();
         landingPage.clickOnMentorsMenuItem();
         Assert.assertTrue(landingPage.checkMentorsMenuItemIsClickable());
         System.out.println("________________________\n" +
@@ -77,7 +79,9 @@ public class LandingPageTest extends BaseTest {
                 "TEST PASSED: Item Start up is displayed");
     }
     @Test
-    public void menuItemStartUpOpensCorrectModule() {
+    public void menuItemStartUpOpensCorrectModule() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.scrollUp();
         landingPage.clickOnStartUpMenuItem();
         Assert.assertTrue(landingPage.checkStarUpMenuItemIsClickable());
         System.out.println("________________________\n" +
@@ -241,11 +245,95 @@ public class LandingPageTest extends BaseTest {
     }
     @Test
     public void becomeMentorButtonIsVisible(){
+        landingPage.scrollDown();
         landingPage.scrollToBecomeMentorButton();
         Assert.assertTrue(landingPage.becomeMentorButtonIsDisplayed());
         System.out.println("________________________\n" +
                 "TEST PASSED: Become mentor button is displayed");
     }
+    @Test
+    public void startUpTitleIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToStartUpModule();
+        Assert.assertTrue(landingPage.startUpTitleIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Start Up title is displayed");
+    }
+    @Test
+    public void startUpTextIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToStartUpModule();
+        Assert.assertTrue(landingPage.startUpTextIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Start Up text is displayed");
+    }
+    @Test
+    public void findSpecialistButtonIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToFindSpecialistButton();
+        Assert.assertTrue(landingPage.findSpecialistButtonIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Find specialist button is displayed");
+    }
+    @Test
+    public void helpProjectTitleIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToHelpProjectModule();
+        Assert.assertTrue(landingPage.helpProjectTitleIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Help project title is displayed");
+    }
+    @Test
+    public void helpProjectTextIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToHelpProjectModule();
+        Assert.assertTrue(landingPage.helpProjectTextIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Help project text is displayed");
+    }
+    @Test
+    public void boostyButtonIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToBoostyButton();
+        Assert.assertTrue(landingPage.boostyButtonIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Boosty button is displayed");
+    }
+    @Test
+    public void pantheonButtonIsVisible(){
+        landingPage.scrollDown();
+        landingPage.scrollToBoostyButton();
+        Assert.assertTrue(landingPage.pantheonButtonIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Pantheon button is displayed");
+    }
+    @Test
+    public void clickOnBoostyButtonOpensExlabBoostyPage() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.scrollToBoostyButton();
+        Assert.assertTrue(landingPage.boostyButtonIsDisplayed());
+        landingPage.clickOnBoostyButton();
+        landingPage.switchToBoostyTab();
+        Assert.assertTrue(landingPage.boostyLogoIsDisplayed());
+        Assert.assertEquals(getDriver().getCurrentUrl(), "https://boosty.to/exlab_startup");
+        System.out.println("________________________\n" +
+                "TEST PASSED: Click on boosty button opens Exlab page on Boosty");
+    }
+    @Test
+    public void stayConnectedTitleIsVisible(){
+        landingPage.scrollDown();
+        Assert.assertTrue(landingPage.stayConnectedTitleIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Stay connected title is displayed");
+    }
+    @Test
+    public void stayConnectedTextIsDisplayed(){
+        landingPage.scrollDown();
+        Assert.assertTrue(landingPage.stayConnectedTextIsDisplayed());
+        System.out.println("________________________\n" +
+                "TEST PASSED: Stay connected text is displayed");
+    }
+
 
 
 
