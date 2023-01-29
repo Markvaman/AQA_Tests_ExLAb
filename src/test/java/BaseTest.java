@@ -8,7 +8,7 @@ import static driver.driver.quite;
 public abstract class BaseTest {
     protected LandingPage landingPage;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"header", "about us + why exlab", "projects", "mentors", "help project"})
     public void start () {
         createDriver();
         landingPage = new LandingPage();
@@ -16,7 +16,7 @@ public abstract class BaseTest {
     }
 
 
-    @AfterMethod
+    @AfterMethod(groups = {"header", "about us + why exlab", "projects", "mentors", "help project"})
     public void finish() {
         quite();
     }

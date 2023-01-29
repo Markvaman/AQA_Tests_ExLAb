@@ -212,8 +212,8 @@ public class LandingPage extends BaseData {
         scrollToElement(alexandrHeader);
         return driver.findElement(mentorsTitle).isDisplayed();
     }
-    public LandingPage clickOnPlus(){
-        driver.findElement(plusIcon).click();
+    public LandingPage clickOnPlus() throws InterruptedException {
+        clickWithDelay(plusIcon);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(stanislavInfo)));
         return this;
     }
@@ -226,13 +226,13 @@ public class LandingPage extends BaseData {
     public Boolean stanislavInfoIsDisplayed(){
         return driver.findElement(stanislavInfo).isDisplayed();
     }
-    public LandingPage clickOnPlusTwo() {
-        driver.findElement(plusIconTwo).click();
+    public LandingPage clickOnPlusTwo() throws InterruptedException {
+        clickWithDelay(plusIconTwo);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(alexandrFoto)));
         return this;
     }
-    public LandingPage clickOnMinus(){
-        driver.findElement(minusIcon).click();
+    public LandingPage clickOnMinus() throws InterruptedException {
+        clickWithDelay(minusIcon);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(alexandrFoto)));
         return this;
     }
