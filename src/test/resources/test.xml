@@ -11,6 +11,7 @@
                 <include name="projects"/>
                 <include name="help project"/>
                 <include name="mentors"/>
+                <include name="footer"/>
             </run>
         </groups>
 

@@ -1,14 +1,11 @@
 package pageobject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.DataProvider;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static driver.driver.getDriver;
 
 public class LandingPage extends BaseData {
 
@@ -68,198 +65,263 @@ public class LandingPage extends BaseData {
 
 
 
+    //FOOTER
+    private static final By footerLogo = By.xpath("//div[@class='sc-fIavCj fEzmxG']");
+    private static final By copywrite = By.xpath("//div[@class='sc-gITdmR hYaavu']");
+    private static final By linkedinLink = By.xpath("//ul[@class='sc-duzrYq iFnyqc']/li[1]");
+    private static final By instagramLink = By.xpath("//ul[@class='sc-duzrYq iFnyqc']/li[2]");
+    private static final By telegramLink = By.xpath("//ul[@class='sc-duzrYq iFnyqc']/li[3]");
+    private static final By youtubeLink = By.xpath("//ul[@class='sc-duzrYq iFnyqc']/li[4]");
+    private static final By emailLink = By.xpath("//a[@class='sc-ikjQzJ gjCqBu']");
+
+
     // Методы страницы
-    public LandingPage openPage(){
+    public LandingPage openPage() {
         open("http://test.exlab.team/");
         return this;
     }
-    public Boolean logoIsVisible(){
+
+    public Boolean logoIsVisible() {
         return driver.findElement(logo).isDisplayed();
     }
-    public String getMiniLogoClass(){
-       return driver.findElement(miniLogo).getAttribute("class");
+
+    public String getMiniLogoClass() {
+        return driver.findElement(miniLogo).getAttribute("class");
     }
-    public String getMenuClass(){
+
+    public String getMenuClass() {
         return driver.findElement(menu).getAttribute("class");
     }
-    public String getRightLongImageClass(){
+
+    public String getRightLongImageClass() {
         return driver.findElement(rightLongImage).getAttribute("class");
     }
-    public Boolean bigLogoIsDisplayed(){
+
+    public Boolean bigLogoIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(bigLogo)));
         return driver.findElement(bigLogo).isDisplayed();
     }
-    public Boolean menuItemAboutUsIsDisplayed(){
+
+    public Boolean menuItemAboutUsIsDisplayed() {
         return driver.findElement(menu).isDisplayed();
     }
-    public Boolean checkAboutUSMenuItemIsClickable(){
+
+    public Boolean checkAboutUSMenuItemIsClickable() {
         return driver.findElement(aboutUsTitle).isDisplayed();
     }
+
     public LandingPage clickOnAboutUsMenuItem() throws InterruptedException {
         clickWithDelay(aboutUs);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(aboutUsTitle)));
         return this;
     }
-    public Boolean menuItemProjectsIsDisplayed(){
+
+    public Boolean menuItemProjectsIsDisplayed() {
         return driver.findElement(projects).isDisplayed();
     }
-    public Boolean checkProjectsMenuItemIsClickable(){
+
+    public Boolean checkProjectsMenuItemIsClickable() {
         return driver.findElement(projectsTitle).isDisplayed();
     }
+
     public LandingPage clickOnProjectsMenuItem() throws InterruptedException {
         clickWithDelay(projects);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(projectsTitle)));
         return this;
     }
-    public Boolean menuItemMentorsIsDisplayed(){
+
+    public Boolean menuItemMentorsIsDisplayed() {
         return driver.findElement(mentors).isDisplayed();
     }
-    public Boolean checkMentorsMenuItemIsClickable(){
-       return driver.findElement(mentorsTitle).isDisplayed();
+
+    public Boolean checkMentorsMenuItemIsClickable() {
+        return driver.findElement(mentorsTitle).isDisplayed();
     }
+
     public LandingPage clickOnMentorsMenuItem() throws InterruptedException {
         clickWithDelay(mentors);
         return this;
     }
-    public Boolean startUpMenuItemIsDisplayed(){
+
+    public Boolean startUpMenuItemIsDisplayed() {
         return driver.findElement(startUp).isDisplayed();
     }
-    public Boolean checkStarUpMenuItemIsClickable(){
+
+    public Boolean checkStarUpMenuItemIsClickable() {
         return driver.findElement(startUpTitle).isDisplayed();
     }
-    public LandingPage clickOnStartUpMenuItem () throws InterruptedException {
+
+    public LandingPage clickOnStartUpMenuItem() throws InterruptedException {
         clickWithDelay(startUp);
         return this;
     }
-    public Boolean sunIconIsDisplayed(){
-        return driver.findElement(sunIcon).isDisplayed(); }
-    public LandingPage clickOnSunIcon(){
+
+    public Boolean sunIconIsDisplayed() {
+        return driver.findElement(sunIcon).isDisplayed();
+    }
+
+    public LandingPage clickOnSunIcon() {
         driver.findElement(sunIcon).click();
-        return this;}
-    public String getBackgroundColor(){
+        return this;
+    }
+
+    public String getBackgroundColor() {
         return driver.findElement(background).getCssValue("background-color");
     }
-    public Boolean joinButtonIsDisplayed(){
-        return driver.findElement(joinButton).isDisplayed(); }
-    public LandingPage clickOnJoinButton(){
+
+    public Boolean joinButtonIsDisplayed() {
+        return driver.findElement(joinButton).isDisplayed();
+    }
+
+    public LandingPage clickOnJoinButton() {
         driver.findElement(joinButton).click();
         return this;
     }
-    public Boolean botNameIsDisplayed(){
-       return driver.findElement(botName).isDisplayed(); }
-    public LandingPage switchToBotTab(){
+
+    public Boolean botNameIsDisplayed() {
+        return driver.findElement(botName).isDisplayed();
+    }
+
+    public LandingPage switchToBotTab() {
         switchToSecondTab();
         return this;
     }
-    public Boolean aboutUsTitleIsDisplayed(){
+
+    public Boolean aboutUsTitleIsDisplayed() {
         scrollToElement(aboutUsTitle);
         return driver.findElement(aboutUsTitle).isDisplayed();
     }
-    public Boolean aboutUsTextIsDisplayed(){
+
+    public Boolean aboutUsTextIsDisplayed() {
         scrollToElement(aboutUsText);
         return driver.findElement(aboutUsText).isDisplayed();
     }
-    public Boolean whyExlabTitleIsDisplayed(){
+
+    public Boolean whyExlabTitleIsDisplayed() {
         scrollToElement(whyExlabTitle);
-       return driver.findElement(whyExlabTitle).isDisplayed();
+        return driver.findElement(whyExlabTitle).isDisplayed();
     }
-    public Boolean whyExlabTextIsDisplayed(){
+
+    public Boolean whyExlabTextIsDisplayed() {
         scrollToElement(whyExlabText);
         return driver.findElement(whyExlabText).isDisplayed();
     }
+
     public Boolean secondJoinButtonIsDisplayed() {
         scrollToElement(secondJoinButton);
         return driver.findElement(secondJoinButton).isDisplayed();
     }
-    public LandingPage clickOnSecondJoinButton(){
+
+    public LandingPage clickOnSecondJoinButton() {
         scrollToElement(secondJoinButton);
         driver.findElement(secondJoinButton).click();
         return this;
     }
-    public Boolean projectTitleIsDisplayed(){
+
+    public Boolean projectTitleIsDisplayed() {
         scrollToElement(projectsTitle);
         return driver.findElement(projectsTitle).isDisplayed();
     }
-    public Boolean exlabProjectLogoIsDisplayed(){
+
+    public Boolean exlabProjectLogoIsDisplayed() {
         scrollToElement(projectsExlabLogo);
         return driver.findElement(projectsExlabLogo).isDisplayed();
     }
-    public Boolean exlabProjectTextIsDisplayed(){
+
+    public Boolean exlabProjectTextIsDisplayed() {
         scrollToElement(projectsExlabText);
         return driver.findElement(projectsExlabText).isDisplayed();
     }
-    public Boolean healthProjectLogoIsDisplayed(){
+
+    public Boolean healthProjectLogoIsDisplayed() {
         scrollToElement(projectsHealthLogo);
         return driver.findElement(projectsHealthLogo).isDisplayed();
     }
-    public Boolean healthProjectTextIsDisplayed(){
+
+    public Boolean healthProjectTextIsDisplayed() {
         scrollToElement(projectsHealthText);
         return driver.findElement(projectsHealthText).isDisplayed();
     }
-    public Boolean easyHelpLogoIsDisplayed(){
+
+    public Boolean easyHelpLogoIsDisplayed() {
         scrollToElement(projectsEasyHelpLogo);
         return driver.findElement(projectsEasyHelpLogo).isDisplayed();
     }
-    public Boolean easyHelpTextIsDisplayed(){
+
+    public Boolean easyHelpTextIsDisplayed() {
         scrollToElement(projectsEasyHelpText);
         return driver.findElement(projectsEasyHelpText).isDisplayed();
     }
+
     public Boolean mentorsTitleIsDisplayed() {
         scrollToElement(stanislavHeader);
         return driver.findElement(mentorsTitle).isDisplayed();
     }
-    public Boolean scrollToMentorsModule(){
+
+    public Boolean scrollToMentorsModule() {
         scrollToElement(alexandrHeader);
         return driver.findElement(mentorsTitle).isDisplayed();
     }
+
     public LandingPage clickOnPlus() throws InterruptedException {
         clickWithDelay(plusIcon);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(stanislavInfo)));
         return this;
     }
-    public String checkPlusIconClass(){
+
+    public String checkPlusIconClass() {
         return driver.findElement(plusIcon).getAttribute("class");
     }
-    public Boolean stanislavHeaderIsDisplayed(){
+
+    public Boolean stanislavHeaderIsDisplayed() {
         return driver.findElement(stanislavHeader).isDisplayed();
     }
-    public Boolean stanislavInfoIsDisplayed(){
+
+    public Boolean stanislavInfoIsDisplayed() {
         return driver.findElement(stanislavInfo).isDisplayed();
     }
+
     public LandingPage clickOnPlusTwo() throws InterruptedException {
         clickWithDelay(plusIconTwo);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(alexandrFoto)));
         return this;
     }
+
     public LandingPage clickOnMinus() throws InterruptedException {
         clickWithDelay(minusIcon);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(alexandrFoto)));
         return this;
     }
-    public Boolean alexandrHeaderIsDisplayed(){
+
+    public Boolean alexandrHeaderIsDisplayed() {
         return driver.findElement(alexandrHeader).isDisplayed();
     }
-    public Boolean alexandrFotoIsDisplayed(){
+
+    public Boolean alexandrFotoIsDisplayed() {
         return driver.findElement(alexandrFoto).isDisplayed();
     }
-    public int checkMentorsCount(){
+
+    public int checkMentorsCount() {
         int count = driver.findElements(By.className("sc-jIAOiI")).size();
         return count;
     }
-    public Boolean scrollToBecomeMentorButton(){
+
+    public Boolean scrollToBecomeMentorButton() {
         scrollToElement(becomeMentorButton);
         return driver.findElement(becomeMentorButton).isDisplayed();
     }
-    public Boolean becomeMentorButtonIsDisplayed(){
+
+    public Boolean becomeMentorButtonIsDisplayed() {
         return driver.findElement(becomeMentorButton).isDisplayed();
     }
-    public void scrollDown(){
+
+    public void scrollDown() {
         // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(aboutUsTitle));
         // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(projectsTitle));
         // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(mentorsTitle));
         // js.executeScript("arguments[0].scrollIntoView();", driver.findElement(startUpTitle));
         String xpath = "//*[@class='sc-fEOsli iema-Dv']";
-        List <WebElement> elements = driver.findElements(By.xpath(xpath));
+        List<WebElement> elements = driver.findElements(By.xpath(xpath));
         int count = elements.size();
         for (int i = 1; i <= count; i++) {
             WebElement position = driver.findElement(By.xpath(String.format("(%s)[%d]", xpath, i)));
@@ -270,10 +332,11 @@ public class LandingPage extends BaseData {
             }
             js.executeScript("arguments[0].scrollIntoView(true);", position);
         }
-        }
-    public void scrollUp(){
+    }
+
+    public void scrollUp() {
         String xpath = "//*[@class='sc-fEOsli iema-Dv']";
-        List <WebElement> elements = driver.findElements(By.xpath(xpath));
+        List<WebElement> elements = driver.findElements(By.xpath(xpath));
         int count = elements.size();
         for (int i = 7; i > 0; i--) {
             WebElement position = driver.findElement(By.xpath(String.format("(%s)[%d]", xpath, i)));
@@ -286,59 +349,87 @@ public class LandingPage extends BaseData {
         }
         //js.executeScript("arguments[0].scrollIntoView()", menu);
     }
+
     public LandingPage scrollToStartUpModule() {
         scrollToElement(startUpTitle);
         return this;
     }
-    public Boolean startUpTitleIsDisplayed(){
+
+    public Boolean startUpTitleIsDisplayed() {
         return driver.findElement(startUpTitle).isDisplayed();
     }
-    public Boolean startUpTextIsDisplayed(){
+
+    public Boolean startUpTextIsDisplayed() {
         return driver.findElement(startUpText).isDisplayed();
     }
-    public LandingPage scrollToFindSpecialistButton(){
+
+    public LandingPage scrollToFindSpecialistButton() {
         scrollToElement(findSpecialistButton);
         return this;
     }
-    public Boolean findSpecialistButtonIsDisplayed(){
+
+    public Boolean findSpecialistButtonIsDisplayed() {
         return driver.findElement(findSpecialistButton).isDisplayed();
     }
-    public LandingPage scrollToHelpProjectModule(){
+
+    public LandingPage scrollToHelpProjectModule() {
         scrollToElement(helpProjectText);
         return this;
     }
-    public LandingPage scrollToBoostyButton(){
+
+    public LandingPage scrollToBoostyButton() {
         scrollToElement(boostyButton);
         return this;
     }
 
-    public Boolean helpProjectTitleIsDisplayed(){
+    public Boolean helpProjectTitleIsDisplayed() {
         return driver.findElement(helpProjectTitle).isDisplayed();
     }
-    public Boolean helpProjectTextIsDisplayed(){
+
+    public Boolean helpProjectTextIsDisplayed() {
         return driver.findElement(helpProjectText).isDisplayed();
     }
-    public Boolean boostyButtonIsDisplayed(){
+
+    public Boolean boostyButtonIsDisplayed() {
         return driver.findElement(boostyButton).isDisplayed();
     }
+
     public Boolean pantheonButtonIsDisplayed() {
         return driver.findElement(pantheonButton).isDisplayed();
     }
+
     public void clickOnBoostyButton() throws InterruptedException {
         clickWithDelay(boostyButton);
     }
-    public Boolean boostyLogoIsDisplayed(){
+
+    public Boolean boostyLogoIsDisplayed() {
         return driver.findElement(boostyLogo).isDisplayed();
     }
-    public LandingPage switchToBoostyTab(){
+
+    public LandingPage switchToBoostyTab() {
         switchToSecondTab();
         return this;
     }
-    public Boolean stayConnectedTitleIsDisplayed(){
+
+    public Boolean stayConnectedTitleIsDisplayed() {
         return driver.findElement(stayConnectedTitle).isDisplayed();
     }
-    public Boolean stayConnectedTextIsDisplayed(){
+
+    public Boolean stayConnectedTextIsDisplayed() {
         return driver.findElement(stayConnectedText).isDisplayed();
     }
+    @DataProvider(name = "locators for tests 41-43, 45, 47, 49, 51")
+    public static Object[][] getData(){
+        return new Object[][] {
+                {"Exlab logo in footer is displayed", footerLogo},
+                {"Copywrite in footer is displayed", copywrite},
+                {"LinkedIn link in footer is displayed", linkedinLink},
+                {"Instagram link in footer is displayed", instagramLink},
+                {"Telegram in footer is displayed", telegramLink},
+                {"Youtube link in footer is displayed", youtubeLink},
+                {"Email in footer is displayed", emailLink}
+        };
+
     }
 
+}

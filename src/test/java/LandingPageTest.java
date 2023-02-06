@@ -1,7 +1,9 @@
-import io.qameta.allure.*;
-import org.junit.jupiter.api.DisplayName;
+import io.qameta.allure.Description;
+import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pageobject.LandingPage;
 
 import static driver.driver.getDriver;
 
@@ -380,10 +382,18 @@ public class LandingPageTest extends BaseTest {
         System.out.println("________________________\n" +
                 "TEST PASSED: Stay connected text is displayed");
     }
+    @Test(groups = "footer", dataProvider = "locators for tests 41-43, 45, 47, 49, 51", dataProviderClass = LandingPage.class)
+    public void footerElementsIsVisible(String string, By locator) {
+        landingPage.scrollDown();
+        Assert.assertTrue(getDriver().findElement(locator).isDisplayed());
+
+    }
+
+    }
 
 
 
 
 
 
-}
+
