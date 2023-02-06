@@ -52,12 +52,6 @@
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.36</version>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
 
   </dependencies>
 
@@ -110,3 +104,4 @@
     </plugins>
   </reporting>
 </project>
+

@@ -431,5 +431,33 @@ public class LandingPage extends BaseData {
         };
 
     }
+    public void clickOnLinkedinLink() throws InterruptedException {
+        clickWithDelay(linkedinLink);
+    }
+    public LandingPage switchToLinkedinPage(){
+        switchToSecondTab();
+        return this;
+    }
+    public void clickOnInstagramLink() throws InterruptedException {
+        clickWithDelay(instagramLink);
+    }
+    public LandingPage switchToInstagramPage(){
+        switchToSecondTab();
+        return this;
+    }
+    public void clickOnTgLink() throws InterruptedException {
+        clickWithDelay(telegramLink);
+    }
+    public LandingPage switchToTgPage(){
+        switchToSecondTab();
+        return this;
+    }
+    public void clickOnYoutubeLink() throws InterruptedException {
+        clickWithDelay(youtubeLink);
+    }
+    public LandingPage switchToYoutubePage(){
+        switchToSecondTab();
+        return this;
+    }
 
 }

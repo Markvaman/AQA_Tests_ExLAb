@@ -383,10 +383,51 @@ public class LandingPageTest extends BaseTest {
                 "TEST PASSED: Stay connected text is displayed");
     }
     @Test(groups = "footer", dataProvider = "locators for tests 41-43, 45, 47, 49, 51", dataProviderClass = LandingPage.class)
+    @Description("Name: Footer elements are visible\n" + "Open landing page, scroll to footer and check elements visibility with dataProvider")
     public void footerElementsIsVisible(String string, By locator) {
         landingPage.scrollDown();
         Assert.assertTrue(getDriver().findElement(locator).isDisplayed());
 
+    }
+    @Test(groups = "footer")
+    @Description("Name: LinkedIn link opens correct page\n" + "Open landing page, scroll to to footer and click on linkedin link")
+    public void linkedinLinkFollowsToLinkedinPage() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.clickOnLinkedinLink();
+        landingPage.switchToLinkedinPage();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("linkedin.com"));
+        System.out.println("________________________\n" +
+                "TEST PASSED: LinkedIn link follows to LinkedIn page");
+    }
+    @Test(groups = "footer")
+    @Description("Name: Instagram link opens correct page\n" + "Open landing page, scroll to to footer and click on instagram link")
+    public void instgrmLinkFollowsToInstagramPage() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.clickOnInstagramLink();
+        landingPage.switchToInstagramPage();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("instagram.com"));
+        System.out.println("________________________\n" +
+                "TEST PASSED: Instagram link follows to Instagram page");
+    }
+    @Test(groups = "footer")
+    @Description("Name: Telegram link opens correct page\n" + "Open landing page, scroll to to footer and click on telegram link")
+    public void telegramLinkFollowsToTgPage() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.clickOnTgLink();
+        landingPage.switchToTgPage();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("t.me"));
+        System.out.println("________________________\n" +
+                "TEST PASSED: Telegram link follows to Telegram page");
+    }
+    @Test(groups = "footer")
+    @Description("Name: Youtube link opens correct page\n" + "Open landing page, scroll to to footer and click on youtube link")
+    public void youtubeLinkFollowsToYoutubePage() throws InterruptedException {
+        landingPage.scrollDown();
+        landingPage.clickOnYoutubeLink();
+        landingPage.switchToYoutubePage();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("youtube.com"));
+        System.out.println("________________________\n" +
+                "TEST PASSED: Youtube link follows to Youtube page");
     }
 
     }
