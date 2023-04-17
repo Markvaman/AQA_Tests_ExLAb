@@ -1,4 +1,4 @@
-# Authorization UI tests for https://exlab.team/
+# UI tests for https://exlab.team/
 
 In this project I authorised user scenarios for main web-site
 
